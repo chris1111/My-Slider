@@ -1,163 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif;}
-.mySlides {display: none;}
-img {vertical-align: middle;}
+ 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Slider With Manual Button & Auto-play </title>
+ 
+  <style>
+ body {
+ background: #2d313a;
+}
 
-body {
-    background-color: #2d313a;
-}
-/* Slideshow container */
-.slideshow-container {
-  max-width: 300px;
+#slider {
   position: relative;
-  margin: auto;
+  width: 500px;
+  height: 290px;
+  margin: 100px auto;
+  overflow: hidden;
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-    
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
+#slider ul {
+  position: relative;
+  list-style: none;
+  height: 100%;
+  width: 10000%;
+  padding: 0;
+  margin: 0;
+
+  transition: all 750ms ease;
+  left: 0;
+}
+#slider ul li {
+  position: relative;
+  height: 100%;
+
+  float: left;
+}
+#slider ul li img{
+  width: 500px;
+  height: 290px;
+
+}
+
+#slider #prev, #slider #next {
+  width: 40px;
+  line-height: 40px;
+
+  font-size: 1.5rem;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  color: black;
+    background: #f9f7fb;
+  text-decoration: none;
   position: absolute;
   top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+  transform: translateY(-50%);
+  transition: all 150ms ease;
 }
+#slider #prev:hover, #slider #next:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0;
+    color: white;
+}
+#slider #prev {
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
 }
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+#slider #next {
+  right: 0px;
 }
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-}
-</style>
+  </style>
 </head>
 <body>
+  <div id="slider">
+    <ul id="slideWrap">
+      <li><a href="https://github.com/chris1111/HP-Probook-EliteBook-Package-Creator-OC"><img src="PICS/HP-Probook-EliteBook-Package-Creator-OC.png" alt=""></a></li>
+      <li><a href="https://github.com/chris1111/Wimlib-Imagex-Package"><img src="PICS/Wimlib-Imagex-Package.png" alt=""></a></li>
+      <li><a href="https://github.com/chris1111/Un-MountEFI"><img src="PICS/Un-MountEFI.png" alt=""></a></li>
+      <li><a href="https://github.com/chris1111/Wireless-USB-Big-Sur-Adapter"><img src="PICS/Wireless USB Big Sur Adapter.png" alt=""></a></li>
+      <li><a href="https://github.com/chris1111/Icon-Changer"><img src="PICS/Icon-Changer.png" alt=""></a></li>
+    </ul>
+    <a id="prev" href="#">&#8810;</a>
+    <a id="next" href="#">&#8811;</a>
+  </div>
 
-<div class="slideshow-container">
 
-<div class="mySlides fade">
-<div class="numbertext">1 / 5</div>
-<a href="https://github.com/chris1111/HP-Probook-EliteBook-Package-Creator-OC"><img src="PICS/HP-Probook-EliteBook-Package-Creator-OC.png" style="width:100%"></a>
-<div class="text">HP-Probook-EliteBook-Package-Creator-OC</div>
-</div>
+  <script>
+    var responsiveSlider = function() {
 
-<div class="mySlides fade">
-<div class="numbertext">2 / 5</div>
-<a href="https://github.com/chris1111/Wimlib-Imagex-Package"><img src="PICS/Wimlib-Imagex-Package.png" style="width:100%"></a>
-<div class="text">Wimlib-Imagex-Package</div>
-</div>
+var slider = document.getElementById("slider");
+var sliderWidth = slider.offsetWidth;
+var slideList = document.getElementById("slideWrap");
+var count = 1;
+var items = slideList.querySelectorAll("li").length;
+var prev = document.getElementById("prev");
+var next = document.getElementById("next");
 
-<div class="mySlides fade">
-  <div class="numbertext">3 / 5</div>
-  <a href="https://github.com/chris1111/Un-MountEFI"><img src="PICS/Un-MountEFI.png" style="width:100%"></a>
-  <div class="text">Un-MountEFI</div>
-</div>
+window.addEventListener('resize', function() {
+  sliderWidth = slider.offsetWidth;
+});
 
-<div class="mySlides fade">
-  <div class="numbertext">4 / 5</div>
-  <a href="https://github.com/chris1111/Wireless-USB-Big-Sur-Adapter"><img src="PICS/Wireless USB Big Sur Adapter.png" style="width:100%"></a>
-  <div class="text">Wireless USB Big Sur Adapter</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">5 / 5</div>
-  <a href="https://github.com/chris1111/Icon-Changer"><img src="PICS/Icon-Changer.png" style="width:100%"></a>
-  <div class="text">Icon-Changer</div>
-</div>
-
-<a class="prev" onclick="plusSlides(-1)">❮</a>
-<a class="next" onclick="plusSlides(1)">❯</a>
-
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-</div>
-
-<script>
-let slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+var prevSlide = function() {
+  if(count > 1) {
+    count = count - 2;
+    slideList.style.left = "-" + count * sliderWidth + "px";
+    count++;
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
+  else if(count = 1) {
+    count = items - 1;
+    slideList.style.left = "-" + count * sliderWidth + "px";
+    count++;
   }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
-</script>
+};
 
+var nextSlide = function() {
+  if(count < items) {
+    slideList.style.left = "-" + count * sliderWidth + "px";
+    count++;
+  }
+  else if(count = items) {
+    slideList.style.left = "0px";
+    count = 1;
+  }
+};
+
+next.addEventListener("click", function() {
+  nextSlide();
+});
+
+prev.addEventListener("click", function() {
+  prevSlide();
+});
+
+setInterval(function() {
+  nextSlide()
+}, 5000);
+
+};
+
+window.onload = function() {
+responsiveSlider();
+}
+
+
+  </script>
 </body>
 </html>
-            
-        
